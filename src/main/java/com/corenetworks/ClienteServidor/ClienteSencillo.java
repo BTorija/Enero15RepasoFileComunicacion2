@@ -1,4 +1,4 @@
-package com.corenetworks.presentacion;
+package com.corenetworks.ClienteServidor;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -9,10 +9,15 @@ import java.net.UnknownHostException;
 
 public class ClienteSencillo {
     public static void main(String[] args) {
-        try (Socket peticion = new Socket("localhost",3000);
+        String articulo= "pera";
+        int cantidad=5;
+        try (Socket peticion = new Socket("localhost",9999);
              PrintWriter sSalida = new PrintWriter(peticion.getOutputStream(),true);){
 
-            sSalida.println("Hola Mundo!!");
+
+
+            sSalida.printf("%10s%d %n",articulo,cantidad);
+
             try( BufferedReader bf = new BufferedReader(new InputStreamReader(peticion.getInputStream()));){
                 System.out.println(bf.readLine());
             }
